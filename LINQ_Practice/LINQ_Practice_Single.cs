@@ -38,21 +38,30 @@ namespace LINQ_Practice
         [TestMethod]
         public void GetOnlyCohortWithThreeJuniorInstructors()
         {
-            var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            var ActualCohort = PracticeData.Single(c => c.JuniorInstructors.Count == 3);
+            //var query = from c in PracticeData
+            //                   where c.JuniorInstructors.Count == 3
+            //                   select c;
+            //var ActualCohort = query.First();
             Assert.AreEqual(ActualCohort, CohortBuilder.Cohort3);
         }
 
         [TestMethod]
         public void GetOnlyCohortThatIsFullTimeAndPrimaryInstructorBirthdayInTheFuture()
         {
-            var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            //var ActualCohort = PracticeData.Single(c => c.PrimaryInstructor.Birthday > DateTime.Now && c.FullTime == true);
+            var query = from c in PracticeData
+                        where c.PrimaryInstructor.Birthday > DateTime.Now
+                        where c.FullTime == true
+                        select c;
+            var ActualCohort = query.First();
             Assert.AreEqual(ActualCohort, CohortBuilder.Cohort2);
         }
 
         [TestMethod]
         public void GetOnlyCohortWithInstructorNamedZeldaOrNull()
         {
-            var ActualCohort = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            var ActualCohort = PracticeData.SingleOrDefault(c => c.PrimaryInstructor.FirstName == "Zelda");
             Assert.IsNull(ActualCohort);
         }
 
@@ -60,7 +69,8 @@ namespace LINQ_Practice
         [ExpectedException(typeof(System.InvalidOperationException))]
         public void GetOnlyCohortThatIsBothNotActiveAndNotFullTimeOrThrowException()
         {
-            var shouldThrowException = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            var shouldThrowException = PracticeData.SingleOrDefault(c => c.FullTime == null);
+            Assert.IsNull(shouldThrowException);
         }
 
         [TestMethod]
