@@ -69,7 +69,7 @@ namespace LINQ_Practice
         [ExpectedException(typeof(System.InvalidOperationException))]
         public void GetOnlyCohortThatIsBothNotActiveAndNotFullTimeOrThrowException()
         {
-            var shouldThrowException = PracticeData.SingleOrDefault(c => c.FullTime == null);
+            var shouldThrowException = PracticeData.SingleOrDefault(c => c.FullTime == false && c.Active == false);
             Assert.IsNull(shouldThrowException);
         }
 
@@ -77,7 +77,8 @@ namespace LINQ_Practice
         [ExpectedException(typeof(System.InvalidOperationException))]
         public void GetOnlyCohortWith2JuniorInstructorsOrThrowException()
         {
-            var shouldThrowException = PracticeData/*FILL IN LINQ EXPRESSION*/;
+            var shouldThrowException = PracticeData.SingleOrDefault(c => c.JuniorInstructors.Count == 2);
+            Assert.IsNull(shouldThrowException);
         }
     }
 }
