@@ -68,7 +68,7 @@ namespace LINQ_Practice
         [ExpectedException(typeof(System.InvalidOperationException))]
         public void GetFirstCohortThatIsBothNotActiveAndNotFullTimeOrThrowException()
         {
-            var shouldThrowException = PracticeData.Where(c => c.Active == false && c.FullTime == false).FirstOrDefault();
+            var shouldThrowException = PracticeData.Where(c => c.Active == false && c.FullTime == false).First();
         }
 
         [TestMethod]

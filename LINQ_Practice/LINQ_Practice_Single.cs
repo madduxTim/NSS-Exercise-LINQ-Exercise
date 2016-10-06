@@ -69,8 +69,8 @@ namespace LINQ_Practice
         [ExpectedException(typeof(System.InvalidOperationException))]
         public void GetOnlyCohortThatIsBothNotActiveAndNotFullTimeOrThrowException()
         {
-            var shouldThrowException = PracticeData.SingleOrDefault(c => c.FullTime == false && c.Active == false);
-            Assert.IsNull(shouldThrowException);
+            var shouldThrowException = PracticeData.Single(c => c.FullTime == false && c.Active == false);
+            //Assert.IsNull(shouldThrowException);
         }
 
         [TestMethod]
