@@ -8,10 +8,10 @@ namespace LINQ_Practice
 {
     [TestClass]
     public class LINQ_Practice_OrderBy
-        /*
-         * .OrderBy returns ascending
-         * .OrderByDescending returns descending
-         */
+    /*
+     * .OrderBy returns ascending
+     * .OrderByDescending returns descending
+     */
     {
         public List<Cohort> PracticeData { get; set; }
         public CohortBuilder CohortBuilder { get; set; }
@@ -36,18 +36,18 @@ namespace LINQ_Practice
             var expected = PracticeData.OrderBy(c => c.Name).ToList();
             CollectionAssert.AreEqual(expected, new List<Cohort> { CohortBuilder.Cohort2, CohortBuilder.Cohort4, CohortBuilder.Cohort1, CohortBuilder.Cohort3 });
         }
-        
+
         [TestMethod]
         public void GetAllStudentsInCohort1ByBirthday()
         {
-            var expected = PracticeData[0].Students.OrderBy(c => c.Birthday).ToList(); 
+            var expected = PracticeData[0].Students.OrderBy(c => c.Birthday).ToList();
             CollectionAssert.AreEqual(expected, new List<Student> { CohortBuilder.Student5, CohortBuilder.Student1, CohortBuilder.Student4, CohortBuilder.Student2, CohortBuilder.Student3 });
         }
 
         [TestMethod]
         public void GetAllStudentsInCohort1ByBirthdayYoungestFirst()
         {
-            var expected = PracticeData[0].Students.OrderByDescending(c => c.Birthday).ToList(); 
+            var expected = PracticeData[0].Students.OrderByDescending(c => c.Birthday).ToList();
             CollectionAssert.AreEqual(expected, new List<Student> { CohortBuilder.Student3, CohortBuilder.Student2, CohortBuilder.Student4, CohortBuilder.Student1, CohortBuilder.Student5 });
         }
 
@@ -55,7 +55,7 @@ namespace LINQ_Practice
         public void GetAllJuniorInstructorsInCohort3ByLastName()
         {
             var expected = PracticeData[2].JuniorInstructors.OrderBy(c => c.LastName).ToList();
-            CollectionAssert.AreEqual(expected, new List<string> {CohortBuilder.Instructor6.LastName, CohortBuilder.Instructor1.LastName, CohortBuilder.Instructor4.LastName });
+            CollectionAssert.AreEqual(expected, new List<Instructor> { CohortBuilder.Instructor4, CohortBuilder.Instructor1, CohortBuilder.Instructor6 });
         }
     }
 }
